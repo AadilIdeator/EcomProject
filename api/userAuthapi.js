@@ -4,10 +4,7 @@ let bcrypt = require("bcrypt");
 let U = require("../schema/userModel");
 let auth = require("./middleware/auth");
 
-//When deleting any record check for Admin
-//let Admin = require("./middleware/admin");
 
-//loggedIn User
 router.get("/me", auth, async (req, res) => {
   let data = await U.userModel
     .findById(req.userModel._id)
@@ -15,7 +12,7 @@ router.get("/me", auth, async (req, res) => {
   res.send(data);
 });
 
-//Get All User
+
 router.get("/allUser", async (req, res) => {
   let user = await U.userModel.find({});
   if (!user) {
@@ -24,7 +21,7 @@ router.get("/allUser", async (req, res) => {
   res.send(user);
 });
 
-//Create new User
+
 router.post("/newUser", async (req, res) => {
   let { error } = U.ValidationError(req.body);
   if (error) {
